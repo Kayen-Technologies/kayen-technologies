@@ -4,6 +4,60 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import CaseStudyOverlay from "./CaseStudyOverlay";
+import DecryptedText from "../DecryptedText";
+
+const COLUMNS = 5;
+
+const curtainParentVariants = {
+  enter: {
+    scale: 1.3,
+    zIndex: 10,
+  },
+  center: {
+    scale: 1,
+    zIndex: 10,
+    transition: {
+      duration: 1.1,
+      ease: [0.3, 0.9, 0.1, 1],
+    },
+  },
+  exit: (direction: number) => ({
+    scale: 1,
+    zIndex: 20,
+    transition: {
+      staggerChildren: 0.05,
+      staggerDirection: direction > 0 ? 1 : -1,
+    },
+  }),
+};
+
+const curtainColumnVariants = {
+  enter: {
+    clipPath: "inset(0% 0% 0% 0%)",
+  },
+  center: {
+    clipPath: "inset(0% 0% 0% 0%)",
+  },
+  exit: (direction: number) => ({
+    clipPath: direction > 0 ? "inset(0% 0% 0% 100%)" : "inset(0% 100% 0% 0%)",
+    transition: {
+      duration: 0.7,
+      ease: [0.3, 0.9, 0.1, 1],
+    },
+  }),
+};
+
+const curtainShadeVariants = {
+  enter: { opacity: 0.18 },
+  center: {
+    opacity: 0,
+    transition: { duration: 1.1, ease: [0.3, 0.9, 0.1, 1] },
+  },
+  exit: {
+    opacity: 0.3,
+    transition: { duration: 0.7, ease: "easeIn" },
+  },
+};
 
 const WORKS = [
   {
@@ -43,6 +97,7 @@ const WORKS = [
 export default function WorksScrollSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
 
   // Custom cursor state
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -70,7 +125,12 @@ export default function WorksScrollSection() {
       if (newIndex < 0) newIndex = 0;
       if (newIndex >= WORKS.length) newIndex = WORKS.length - 1;
 
-      setActiveIndex(newIndex);
+      setActiveIndex((prev) => {
+        if (prev !== newIndex) {
+          setDirection(newIndex > prev ? 1 : -1);
+        }
+        return newIndex;
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -160,7 +220,13 @@ export default function WorksScrollSection() {
                   
                   {/* Title */}
                   <h2 className="font-ubuntu-mono text-5xl md:text-6xl lg:text-[80px] leading-[1.1] md:leading-none text-[#222937] font-bold tracking-tight">
-                    {activeWork.title}
+                    <DecryptedText
+                      text={activeWork.title}
+                      animateOn="view"
+                      revealDirection="center"
+                      className="text-[#222937]"
+                      encryptedClassName="text-[#2A60E3]"
+                    />
                   </h2>
                 </motion.div>
             </AnimatePresence>
@@ -168,23 +234,51 @@ export default function WorksScrollSection() {
 
           {/* Right: Image */}
           <div className="w-full md:w-1/2 flex items-center justify-center md:justify-end h-[50vh] md:h-full md:py-32">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`img-${activeIndex}`}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.05 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="relative w-full max-w-[600px] h-full max-h-[700px] overflow-hidden bg-gray-200"
-              >
-                <Image
-                  src={activeWork.image}
-                  alt={activeWork.title}
-                  fill
-                  className="object-cover object-center"
-                />
-              </motion.div>
-            </AnimatePresence>
+            <div className="relative w-full max-w-[600px] h-full max-h-[700px] overflow-hidden bg-gray-200">
+              <AnimatePresence custom={direction}>
+                <motion.div
+                  key={`img-${activeIndex}`}
+                  custom={direction}
+                  variants={curtainParentVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  className="absolute inset-0 w-full h-full"
+                >
+                  {Array.from({ length: COLUMNS }).map((_, i) => (
+                    <motion.div
+                      key={i}
+                      custom={direction}
+                      variants={curtainColumnVariants}
+                      className="absolute top-0 bottom-0 overflow-hidden"
+                      style={{
+                        left: `${(i / COLUMNS) * 100}%`,
+                        width: `${100 / COLUMNS}%`,
+                      }}
+                    >
+                      <div
+                        className="absolute top-0 bottom-0"
+                        style={{
+                          left: `${-i * 100}%`,
+                          width: `${COLUMNS * 100}%`,
+                        }}
+                      >
+                        <Image
+                          src={activeWork.image}
+                          alt={activeWork.title}
+                          fill
+                          className="object-cover object-center"
+                        />
+                        <motion.div
+                          variants={curtainShadeVariants}
+                          className="absolute inset-0 bg-black pointer-events-none"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
 
         </div>

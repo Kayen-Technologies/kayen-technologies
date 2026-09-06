@@ -1,4 +1,6 @@
 import Image from "next/image";
+import TextType from "../TextType";
+import RollingTextButton from "../RollingTextButton";
 
 export default function BringUsSection() {
   return (
@@ -14,22 +16,18 @@ export default function BringUsSection() {
       <div className="w-full md:w-4/5 bg-[#2A60E3] px-8 md:px-6 pt-10 pb-8 md:pt-8 md:pb-8 flex flex-col justify-between">
         <div>
           {/* Note: The screenshot shows a unique rounded font here, falling back to Ubuntu Mono as the project's primary heading font */}
-          <h2 className="font-ubuntu-mono text-[#F4F5F2] text-5xl md:text-6xl lg:text-[72px] leading-[1.1] font-bold uppercase tracking-wide">
-            BRING US THE PROBLEM.<br />WE'LL SHAPE WHAT COMES NEXT.
-          </h2>
+          <TextType
+            as="h2"
+            className="font-ubuntu-mono text-[#F4F5F2] text-5xl md:text-6xl lg:text-[72px] leading-[1.1] font-bold uppercase tracking-wide"
+            text={"BRING US THE PROBLEM.\nWE'LL SHAPE WHAT COMES NEXT."}
+            typingSpeed={50}
+            loop={true}
+            startOnVisible={true}
+          />
         </div>
         
         <div className="mt-24 md:mt-70 w-full">
-          <button className="w-full bg-[#12161C] hover:bg-black text-white px-6 py-4 cursor-pointer rounded-[4px] flex justify-between items-center transition-colors group">
-            <span className="font-avenir text-base text-white md:text-lg">Book a discovery call</span>
-            <Image 
-              src="/images/landing/arrow-up.png" 
-              alt="Arrow Up" 
-              width={24} 
-              height={24} 
-              className="w-6 h-6 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
-            />
-          </button>
+          <RollingTextButton className="w-full bg-[#12161C] hover:bg-black text-white px-6 py-4 cursor-pointer rounded-[4px] flex justify-between items-center transition-colors group" />
         </div>
       </div>
     </section>

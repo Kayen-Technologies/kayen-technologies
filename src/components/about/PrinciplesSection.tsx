@@ -1,3 +1,5 @@
+import TextType from "../TextType";
+
 export default function PrinciplesSection() {
   const principles = [
     {
@@ -31,9 +33,14 @@ export default function PrinciplesSection() {
     <section className="flex flex-col lg:flex-row min-h-screen">
       {/* Left Side */}
       <div className="bg-[#2A60E3] lg:w-1/2 px-8 md:px-13 py-16 md:py-24 lg:py-32 flex items-start">
-        <h2 className="font-ubuntu-mono text-4xl md:text-5xl lg:text-[60px] font-bold text-white uppercase tracking-wide">
-          PRINCIPLES THAT SHAPE THE WAY WE WORK.
-        </h2>
+        <TextType
+          as="h2"
+          className="font-ubuntu-mono text-4xl md:text-5xl lg:text-[60px] font-bold text-white uppercase tracking-wide"
+          text="PRINCIPLES THAT SHAPE THE WAY WE WORK."
+          typingSpeed={50}
+          loop={true}
+          startOnVisible={true}
+        />
       </div>
 
       {/* Right Side */}

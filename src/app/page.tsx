@@ -3,6 +3,9 @@ import NavBar from "@/components/NavBar";
 import FeaturedWorks from "@/components/landing/FeaturedWorks";
 import IdeasSection from "@/components/landing/IdeasSection";
 import BringUsSection from "@/components/landing/BringUsSection";
+import TextType from "@/components/TextType";
+import RotatingText from "@/components/RotatingText";
+import RollingTextButton from "@/components/RollingTextButton";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -28,24 +31,32 @@ export default function Home() {
 
         <main className="flex flex-1 relative">
           <div className="flex-1 px-8 md:px-13 py-16 flex flex-col justify-center max-w-full md:max-w-[50%] z-10">
+            {/*
             <h1 className="font-ubuntu-mono text-4xl md:text-5xl lg:text-6xl leading-tight font-bold mb-6 uppercase">
               MAKE IT WORK. THEN<br />MAKE IT BETTER.
+            </h1>
+            */}
+            <h1 className="font-ubuntu-mono text-4xl md:text-5xl lg:text-6xl leading-tight font-bold mb-6 uppercase flex flex-wrap items-center gap-x-3 md:gap-x-4">
+              MAKE IT
+              <RotatingText
+                texts={['WORK.', 'BETTER.']}
+                mainClassName="px-2 sm:px-2 md:px-3 bg-[#2A60E3] text-white overflow-hidden justify-center rounded-lg leading-none"
+                staggerFrom={"last"}
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "-120%" }}
+                staggerDuration={0.025}
+                splitLevelClassName="overflow-hidden"
+                transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                rotationInterval={2000}
+              />
             </h1>
             <p className="font-avenir text-base md:text-lg text-white mb-10 max-w-[90%] leading-relaxed">
               We design and build digital products and software that help businesses
               work smarter and move faster. We build with purpose, pay attention to the
               details, and keep making what we create simpler, smarter, and more useful.
             </p>
-            <button className="bg-[#2D6AFF] text-white font-avenir px-5 py-3 rounded-[4px] text-base font-medium flex items-center gap-2 w-fit hover:bg-blue-600 transition-colors">
-              Book a discovery call
-              <Image 
-                src="/images/landing/arrow-up.png" 
-                alt="Arrow Up" 
-                width={20} 
-                height={20} 
-                className="w-6 h-6"
-              />
-            </button>
+            <RollingTextButton className="bg-[#2D6AFF] text-white font-avenir px-5 py-3 rounded-[4px] text-base font-medium flex items-center gap-2 w-fit hover:bg-blue-600 transition-colors group" />
           </div>
         </main>
       </section>
@@ -65,9 +76,14 @@ export default function Home() {
           </div>
 
           <div className="relative z-10 w-full md:w-9/12 lg:w-8/12">
-            <h2 className="font-ubuntu-mono text-4xl md:text-5xl lg:text-[54px] leading-tight font-bold uppercase tracking-wide">
-              GOOD SOFTWARE DOES MORE THAN<br />WORK. IT CREATES MOMENTUM.
-            </h2>
+            <TextType
+              as="h2"
+              className="font-ubuntu-mono text-4xl md:text-5xl lg:text-[54px] leading-tight font-bold uppercase tracking-wide"
+              text={"GOOD SOFTWARE DOES MORE THAN\nWORK. IT CREATES MOMENTUM."}
+              typingSpeed={50}
+              loop={true}
+              startOnVisible={true}
+            />
           </div>
           <div className="relative z-10 w-full md:w-5/12 lg:w-4/12 self-end mt-50 md:mt-32 lg:mt-50">
             <p className="font-avenir text-sm md:text-[15px] leading-relaxed">

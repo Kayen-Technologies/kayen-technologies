@@ -1,4 +1,5 @@
 import Image from "next/image";
+import RollingTextButton from "./RollingTextButton";
 import Link from "next/link";
 
 export default function Footer() {
@@ -15,16 +16,7 @@ export default function Footer() {
           <p className="font-avenir text-white text-base md:text-lg mb-10 max-w-md">
             We are a software company focused on building useful digital products and systems for businesses.
           </p>
-          <button className="bg-[#2D6AFF] hover:bg-blue-600 text-white font-avenir px-6 py-2 rounded-[4px] text-base md:text-lg flex items-center gap-2 w-fit transition-colors group">
-            Book a discovery call
-            <Image
-              src="/images/landing/arrow-up.png"
-              alt="Arrow Up"
-              width={20}
-              height={20}
-              className="w-5 h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
-            />
-          </button>
+          <RollingTextButton className="bg-[#2D6AFF] hover:bg-blue-600 text-white font-avenir px-6 py-2 rounded-[4px] text-base md:text-lg flex items-center gap-2 w-fit transition-colors group" />
         </div>
 
         {/* Right Side */}

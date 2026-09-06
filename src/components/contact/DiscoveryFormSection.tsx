@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
+import TextType from "../TextType";
 
 function CustomSelect({ 
   options, 
@@ -97,9 +98,14 @@ export default function DiscoveryFormSection() {
         {/* Left Side */}
         <div className="flex flex-col justify-between h-full ">
           <div>
-            <h2 className="font-ubuntu-mono text-4xl md:text-5xl lg:text-[64px] leading-[1.1] font-bold uppercase text-white tracking-wide mb-6">
-              BOOK A<br />DISCOVERY CALL.
-            </h2>
+            <TextType
+              as="h2"
+              className="font-ubuntu-mono text-4xl md:text-5xl lg:text-[64px] leading-[1.1] font-bold uppercase text-white tracking-wide mb-6"
+              text={"BOOK A\nDISCOVERY CALL."}
+              typingSpeed={50}
+              loop={true}
+              startOnVisible={true}
+            />
             <p className="font-avenir text-sm md:text-base text-white leading-relaxed max-w-sm">
               Tell us a little about your project, then choose a convenient time for us to talk.
             </p>
