@@ -10,6 +10,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-ubuntu-mono: var(--font-ubuntu-mono);
+  --font-avenir: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
