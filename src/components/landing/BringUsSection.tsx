@@ -27,7 +27,7 @@ export default function BringUsSection() {
         </div>
         
         <div className="mt-24 md:mt-70 w-full">
-          <RollingTextButton className="w-full bg-[#12161C] hover:bg-black text-white px-6 py-4 cursor-pointer rounded-[4px] flex justify-between items-center transition-colors group" />
+          <RollingTextButton href="/contact#discovery-form" className="w-full cursor-pointer bg-[#12161C] font-avenir hover:bg-black text-white px-6 py-4 rounded-[4px] flex justify-between items-center transition-colors group" />
         </div>
       </div>
     </section>

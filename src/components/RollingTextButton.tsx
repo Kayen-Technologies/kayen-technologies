@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "motion/react"
 import { useRef, useState } from "react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 
 const transition = {
   duration: 0.3,
@@ -12,9 +13,11 @@ const transition = {
 interface RollingTextButtonProps {
   text?: string;
   className?: string;
+  href?: string;
 }
 
-export default function RollingTextButton({ text = "Book a discovery call", className }: RollingTextButtonProps) {
+export default function RollingTextButton({ text = "Book a discovery call", className, href }: RollingTextButtonProps) {
+  const router = useRouter()
   const reduceMotion = useReducedMotion()
   const [active, setActive] = useState(false)
   const activeRef = useRef(false)
@@ -70,6 +73,11 @@ export default function RollingTextButton({ text = "Book a discovery call", clas
       type="button"
       className={className || "bg-[#2D6AFF] text-white font-avenir px-5 py-3 rounded-[4px] text-base font-medium flex items-center gap-2 w-fit hover:bg-blue-600 transition-colors group"}
       aria-label={text}
+      onClick={() => {
+        if (href) {
+          router.push(href)
+        }
+      }}
       onHoverStart={() => {
         hovered.current = true
         requestActive(true)

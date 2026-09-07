@@ -6,7 +6,6 @@ import WorksScrollSection from "@/components/works/WorksScrollSection";
 export default function WorksPage() {
   return (
     <div className="flex flex-col bg-[#101317] text-white min-h-screen relative">
-
       {/* Dot Pattern Background */}
       <div
         className="absolute top-0 left-0 right-0 bottom-0 z-0 pointer-events-none"
@@ -64,9 +63,7 @@ export default function WorksPage() {
       </div>
 
       {/* Footer */}
-      <div className="relative z-10">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }

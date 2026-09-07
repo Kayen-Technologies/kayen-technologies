@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import DiscoveryFormSection from "@/components/contact/DiscoveryFormSection";
@@ -6,8 +9,7 @@ import TestimonialsSection from "@/components/contact/TestimonialsSection";
 
 export default function ContactPage() {
   return (
-    <div className="flex flex-col bg-[#12161C] text-white min-h-screen relative overflow-x-hidden">
-      
+    <div className="flex flex-col bg-[#101317] text-white min-h-screen relative">
       {/* Dot Pattern Background */}
       <div 
         className="absolute top-0 left-0 right-0 bottom-0 z-0 pointer-events-none" 
@@ -33,7 +35,7 @@ export default function ContactPage() {
       <div className="relative z-10 flex flex-col min-h-screen">
         <NavBar />
         
-        <main className="flex-1 flex items-center pt-16 pb-16 md:pt-24 md:pb-32">
+        <main className="flex-1 flex items-center pt-16 pb-16 md:pt-24 md:pb-32 overflow-x-hidden">
           <div className="w-full grid grid-cols-1 lg:grid-cols-6 h-full items-center px-8 md:px-13 gap-10 md:gap-12">
             
             {/* Left Side: Texts */}
@@ -48,15 +50,50 @@ export default function ContactPage() {
             
             {/* Right Side: Image */}
             <div className="lg:col-span-2 flex justify-center lg:justify-end h-full mt-8 md:mt-16 lg:mt-0">
-              <div className="relative w-full h-[30vh] lg:h-[20vh] flex items-center justify-center lg:justify-end">
-                <Image 
-                  src="/images/contact us/path arrow.png" 
-                  alt="Path Arrow"
-                  fill
-                  className="object-contain object-center lg:object-right"
-                  priority
-                />
-              </div>
+              <motion.div 
+                className="relative w-full h-[30vh] lg:h-[20vh] flex items-center justify-center lg:justify-end"
+                initial={{ x: -600, y: 200, opacity: 0, rotate: -720, scale: 0.3 }}
+                animate={{ 
+                  x: [-600, 250, 0], 
+                  y: [200, -150, 0],
+                  opacity: [0, 1, 1], 
+                  rotate: [-720, 45, 0],
+                  scale: [0.3, 1.4, 1]
+                }}
+                transition={{ 
+                  duration: 1.5,
+                  times: [0, 0.65, 1],
+                  ease: ["easeOut", "backOut"],
+                  delay: 0.2
+                }}
+              >
+                <motion.div
+                  animate={{ 
+                    scale: [1, 1.05, 1],
+                    opacity: [0.7, 1, 0.7],
+                    filter: [
+                      "drop-shadow(0px 0px 0px rgba(255,255,255,0))",
+                      "drop-shadow(0px 0px 25px rgba(255,255,255,0.5))",
+                      "drop-shadow(0px 0px 0px rgba(255,255,255,0))"
+                    ]
+                  }}
+                  transition={{ 
+                    duration: 2.5, 
+                    repeat: Infinity, 
+                    ease: "easeInOut",
+                    delay: 0.5
+                  }}
+                  className="w-full h-full relative"
+                >
+                  <Image 
+                    src="/images/contact us/path arrow.png" 
+                    alt="Path Arrow"
+                    fill
+                    className="object-contain object-center lg:object-right"
+                    priority
+                  />
+                </motion.div>
+              </motion.div>
             </div>
 
           </div>
@@ -69,9 +106,7 @@ export default function ContactPage() {
       </div>
 
       {/* Footer */}
-      <div className="relative z-10">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }

@@ -11,6 +11,7 @@ interface PixelTransitionProps {
   className?: string;
   style?: CSSProperties;
   aspectRatio?: string;
+  animateOnMount?: boolean;
 }
 
 const PixelTransition: React.FC<PixelTransitionProps> = ({
@@ -22,7 +23,8 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
   once = false,
   aspectRatio = '100%',
   className = '',
-  style = {}
+  style = {},
+  animateOnMount = false
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const pixelGridRef = useRef<HTMLDivElement | null>(null);
@@ -32,7 +34,8 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
   const [isActive, setIsActive] = useState<boolean>(false);
 
   const isTouchDevice =
-    'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches;
+    typeof window !== 'undefined' &&
+    ('ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches);
 
   useEffect(() => {
     const pixelGridEl = pixelGridRef.current;
@@ -103,6 +106,15 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
     });
   };
 
+  useEffect(() => {
+    if (animateOnMount) {
+      const t = setTimeout(() => {
+        animatePixels(true);
+      }, 50);
+      return () => clearTimeout(t);
+    }
+  }, [animateOnMount, gridSize]);
+
   const handleEnter = (): void => {
     if (!isActive) animatePixels(true);
   };
@@ -116,18 +128,7 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
   return (
     <div
       ref={containerRef}
-      className={`
-        ${className}
-        bg-[#222]
-        text-white
-        rounded-[15px]
-        border-2
-        border-white
-        w-[300px]
-        max-w-full
-        relative
-        overflow-hidden
-      `}
+      className={`relative overflow-hidden ${className}`}
       style={style}
       onMouseEnter={!isTouchDevice ? handleEnter : undefined}
       onMouseLeave={!isTouchDevice ? handleLeave : undefined}
@@ -136,7 +137,7 @@ const PixelTransition: React.FC<PixelTransitionProps> = ({
       onBlur={!isTouchDevice ? handleLeave : undefined}
       tabIndex={0}
     >
-      <div style={{ paddingTop: aspectRatio }} />
+      {aspectRatio && aspectRatio !== '100%' && aspectRatio !== 'auto' && <div style={{ paddingTop: aspectRatio }} />}
 
       <div className="absolute inset-0 w-full h-full" aria-hidden={isActive}>
         {firstContent}

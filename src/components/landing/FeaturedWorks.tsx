@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import PixelTransition from "../PixelTransition";
 
 const WORKS = [
   {
@@ -9,30 +10,35 @@ const WORKS = [
     category: "Marketing Agency",
     year: "2026",
     title: "Thryveco Agency",
+    image: "/images/landing/works/thryve.png"
   },
   {
     type: "Website",
     category: "Cleaning Service",
     year: "2026",
     title: "Neat Nest",
+    image: "/images/landing/works/neat nest.png"
   },
   {
     type: "Website",
     category: "Recreational Village",
     year: "2026",
     title: "Visit Danyame",
+    image: "/images/landing/works/danyame.png"
   },
   {
     type: "Website",
     category: "Ride Company",
     year: "2026",
     title: "Ride Out",
+    image: "/images/landing/works/ride out.png"
   },
 ];
 
 export default function FeaturedWorks() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [prevIndex, setPrevIndex] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,7 +62,12 @@ export default function FeaturedWorks() {
       if (newIndex < 0) newIndex = 0;
       if (newIndex >= WORKS.length) newIndex = WORKS.length - 1;
 
-      setActiveIndex(newIndex);
+      setActiveIndex((current) => {
+        if (current !== newIndex) {
+          setPrevIndex(current);
+        }
+        return newIndex;
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -110,12 +121,31 @@ export default function FeaturedWorks() {
 
           {/* Right: Image */}
           <div className="hidden md:flex w-full md:w-1/2 items-center justify-center md:justify-end h-full mt-10 md:mt-0">
-            <div className="relative w-full max-w-lg h-[40vh] md:h-full max-h-[600px] overflow-hidden bg-gray-200">
-              <Image
-                src="/images/landing/works/thryve.png"
-                alt="Featured Work"
-                fill
-                className="object-cover object-center"
+            <div className="relative w-full max-w-lg h-[40vh] md:h-full max-h-[600px]">
+              <PixelTransition
+                key={activeIndex}
+                firstContent={
+                  <Image
+                    src={WORKS[prevIndex].image}
+                    alt={WORKS[prevIndex].title}
+                    fill
+                    className="object-cover object-center"
+                  />
+                }
+                secondContent={
+                  <Image
+                    src={WORKS[activeIndex].image}
+                    alt={WORKS[activeIndex].title}
+                    fill
+                    className="object-cover object-center"
+                  />
+                }
+                gridSize={12}
+                pixelColor="#2A60E3"
+                animationStepDuration={0.4}
+                animateOnMount={activeIndex !== prevIndex}
+                className="w-full h-full bg-gray-200"
+                aspectRatio="auto"
               />
             </div>
           </div>

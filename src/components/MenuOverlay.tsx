@@ -27,7 +27,7 @@ export default function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
 
   const menuItems = [
     { label: "HOME", href: "/" },
-    { label: "SERVICES", href: "#" },
+    { label: "SERVICES", href: "/#services" },
     { label: "WORKS", href: "/works" },
     { label: "ABOUT", href: "/about" },
     { label: "CONTACT US", href: "/contact" }
@@ -65,7 +65,7 @@ export default function MenuOverlay({ isOpen, onClose }: MenuOverlayProps) {
         <div className="relative z-20 w-full pt-5 flex justify-end">
           <button 
             onClick={onClose} 
-            className="w-10 h-10 rounded-full border border-[#FFFFFF66] flex items-center justify-center text-[#F4F5F2] hover:bg-white/10 transition-colors mt-2"
+            className="w-10 h-10 cursor-pointer rounded-full border bg-[#282D36] border-[#626262] flex items-center justify-center text-white hover:bg-white/10 transition-colors mt-2"
           >
             <X size={16} strokeWidth={1.5} />
           </button>

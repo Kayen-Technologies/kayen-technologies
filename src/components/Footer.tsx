@@ -1,12 +1,19 @@
+"use client";
+
 import Image from "next/image";
 import RollingTextButton from "./RollingTextButton";
 import Link from "next/link";
-
 export default function Footer() {
   return (
-    <footer className="bg-[#12161C] pt-24 md:pt-20 flex flex-col min-h-screen">
+    <div 
+      className="relative h-screen w-full"
+      style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
+    >
+      <div className="relative h-[200vh] -top-[100vh]">
+        <div className="h-screen w-full sticky top-0">
+          <footer className="bg-[#12161C] pt-10 md:pt-5 flex flex-col h-full w-full">
       {/* Top Content */}
-      <div className="px-8 md:px-13 flex flex-col lg:flex-row justify-between items-start gap-16 mb-16 md:mb-24">
+      <div className="px-8 md:px-13 flex flex-col lg:flex-row justify-between items-start gap-16 mb-0 md:mb-10">
 
         {/* Left Side */}
         <div className="flex flex-col max-w-2xl">
@@ -16,16 +23,17 @@ export default function Footer() {
           <p className="font-avenir text-white text-base md:text-lg mb-10 max-w-md">
             We are a software company focused on building useful digital products and systems for businesses.
           </p>
-          <RollingTextButton className="bg-[#2D6AFF] hover:bg-blue-600 text-white font-avenir px-6 py-2 rounded-[4px] text-base md:text-lg flex items-center gap-2 w-fit transition-colors group" />
+          <RollingTextButton href="/contact#discovery-form" className="bg-[#2D6AFF] cursor-pointer hover:bg-blue-600 text-white font-avenir px-6 py-2 rounded-[4px] text-base md:text-lg flex items-center gap-2 w-fit transition-colors group" />
         </div>
 
         {/* Right Side */}
         <div className="flex flex-col gap-10 font-avenir text-[#F4F5F2]/80 text-sm md:text-[15px] lg:mr-20">
           {/* Links */}
           <div className="flex flex-col gap-4">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <Link href="/about" className="hover:text-white transition-colors">About</Link>
             <Link href="/works" className="hover:text-white transition-colors">Work</Link>
-            <a href="#" className="hover:text-white transition-colors">Services</a>
+            <Link href="/#services" className="hover:text-white transition-colors">Services</Link>
             <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
           </div>
 
@@ -49,14 +57,14 @@ export default function Footer() {
             <a href="mailto:info@kayentechnologies.com" className="hover:text-white transition-colors">info@kayentechnologies.com</a>
           </div>
 
-          <div className="text-white opacity-0.8 text-xs mt-4">
+          <div className="text-white opacity-0.8 text-xs ">
             © 2026 KAYEN TECHNOLOGIES
           </div>
         </div>
       </div>
 
       {/* Massive Logo at the bottom */}
-      <div className="w-full mt-auto pt-8">
+      <div className="w-full mt-auto pt-0">
         <Image
           src="/logo.svg"
           alt="Kayen Technologies"
@@ -65,6 +73,9 @@ export default function Footer() {
           className="w-full h-auto"
         />
       </div>
-    </footer>
+          </footer>
+        </div>
+      </div>
+    </div>
   );
 }

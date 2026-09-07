@@ -74,7 +74,7 @@ const WORKS = [
     category: "Cleaning Service",
     year: "2026",
     title: "Neat Nest",
-    image: "/images/landing/works/thryve.png"
+    image: "/images/landing/works/neat nest.png"
   },
   {
     number: "03/04",
@@ -82,7 +82,7 @@ const WORKS = [
     category: "Recreational Village",
     year: "2026",
     title: "Visit Danyame",
-    image: "/images/landing/works/thryve.png"
+    image: "/images/landing/works/danyame.png"
   },
   {
     number: "04/04",
@@ -90,7 +90,7 @@ const WORKS = [
     category: "Ride Company",
     year: "2026",
     title: "Ride Out",
-    image: "/images/landing/works/thryve.png"
+    image: "/images/landing/works/ride out.png"
   },
 ];
 

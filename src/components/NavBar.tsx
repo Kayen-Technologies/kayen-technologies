@@ -21,9 +21,9 @@ export default function NavBar() {
         </div>
         <button 
           onClick={() => setIsMenuOpen(true)}
-          className="bg-[#282D36] border border-[#626262] text-white px-3 py-2 rounded text-sm cursor-pointer flex items-center gap-20 hover:bg-[#2a2e35] transition-colors"
+          className="bg-[#282D36] cursor-pointer border border-[#626262] text-white font-avenir px-3 py-2 rounded text-sm cursor-pointer flex items-center gap-20 hover:bg-[#2a2e35] transition-colors"
         >
-          Menu <span className="font-light font-avenir">+</span>
+          Menu <span>+</span>
         </button>
       </nav>
 
