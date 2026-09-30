@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Ubuntu_Mono } from "next/font/google";
 import "./globals.css";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +30,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${ubuntuMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#101317]">{children}</body>
+      <body className="min-h-full flex flex-col bg-[#101317]">
+        {children}
+        <ScrollToTop />
+      </body>
     </html>
   );
 }

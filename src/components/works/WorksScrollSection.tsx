@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import CaseStudyOverlay from "./CaseStudyOverlay";
 import DecryptedText from "../DecryptedText";
 
 const COLUMNS = 5;
 
-const curtainParentVariants = {
+const curtainParentVariants: Variants = {
   enter: {
     scale: 1.3,
     zIndex: 10,
@@ -31,7 +31,7 @@ const curtainParentVariants = {
   }),
 };
 
-const curtainColumnVariants = {
+const curtainColumnVariants: Variants = {
   enter: {
     clipPath: "inset(0% 0% 0% 0%)",
   },
@@ -47,7 +47,7 @@ const curtainColumnVariants = {
   }),
 };
 
-const curtainShadeVariants = {
+const curtainShadeVariants: Variants = {
   enter: { opacity: 0.18 },
   center: {
     opacity: 0,
