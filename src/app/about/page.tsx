@@ -8,8 +8,7 @@ import DiffOrgSection from "@/components/about/DiffOrgSection";
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col bg-[#101317] text-white min-h-screen relative overflow-x-hidden">
-      
+    <div className="flex flex-col bg-[#101317] text-white min-h-screen relative">
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0 h-screen">
         <Image 
@@ -48,7 +47,7 @@ export default function AboutPage() {
         </main>
       </div>
 
-      <div className="relative z-10 flex flex-col">
+      <div className="relative z-10 flex flex-col overflow-x-hidden">
         <MissionSection />
         <ProblemSection />
         <PrinciplesSection />
@@ -56,9 +55,7 @@ export default function AboutPage() {
       </div>
 
       {/* Footer */}
-      <div className="relative z-10">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }

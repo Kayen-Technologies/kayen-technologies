@@ -56,7 +56,7 @@ export default function Home() {
               work smarter and move faster. We build with purpose, pay attention to the
               details, and keep making what we create simpler, smarter, and more useful.
             </p>
-            <RollingTextButton className="bg-[#2D6AFF] text-white font-avenir px-5 py-3 rounded-[4px] text-base font-medium flex items-center gap-2 w-fit hover:bg-blue-600 transition-colors group" />
+            <RollingTextButton href="/contact#discovery-form" className="bg-[#2D6AFF] cursor-pointer text-white font-avenir px-5 py-3 rounded-[4px] text-base font-medium flex items-center gap-2 w-fit hover:bg-blue-600 transition-colors group" />
           </div>
         </main>
       </section>

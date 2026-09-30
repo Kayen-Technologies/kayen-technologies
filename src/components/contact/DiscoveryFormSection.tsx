@@ -93,7 +93,7 @@ export default function DiscoveryFormSection() {
         </div>
       </div>
 
-      <div className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 h-full">
+      <div id="discovery-form" className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 h-full">
         
         {/* Left Side */}
         <div className="flex flex-col justify-between h-full ">
@@ -165,7 +165,7 @@ export default function DiscoveryFormSection() {
               onChange={setTimeline} 
             />
             
-            <button className="w-full bg-[#2D6AFF] hover:bg-[#2A60E3] text-white font-avenir py-4 mt-2 transition-colors text-sm md:text-base rounded-sm">
+            <button className="w-full bg-[#2D6AFF] cursor-pointer hover:bg-[#2A60E3] text-white font-avenir py-4 mt-2 transition-colors text-sm md:text-base rounded-sm">
               Continue to Booking
             </button>
             

@@ -72,7 +72,7 @@ export default function TestimonialsSection() {
         <div className="w-full relative">
           {/* Solid background to block the main section grid behind the slider */}
           <div className="absolute inset-0 bg-[#12161C] z-10 pointer-events-none"></div>
-          
+
           {/* Local 3-line grid just for the slider area */}
           <div className="absolute inset-0 px-8 md:px-13 pointer-events-none z-10">
             <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 border-l border-r border-[#FFFFFF33]">
@@ -84,7 +84,7 @@ export default function TestimonialsSection() {
           <div className="w-full pl-8 md:pl-13 relative z-20">
             <div
               ref={scrollRef}
-              className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide w-full border-t border-b border-[#FFFFFF33]"
+              className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide w-full border-t border-b border-[#FFFFFF33] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
             >
               {testimonials.map((t, idx) => (
                 <div

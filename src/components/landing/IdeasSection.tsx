@@ -86,7 +86,7 @@ export default function IdeasSection() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-[#12161C] relative">
+    <section id="services" className="bg-[#101317] relative">
       
       {/* Background Grid Lines (constrained by padding, spans full height) */}
       <div className="absolute inset-0 px-8 md:px-13 pointer-events-none z-0">
